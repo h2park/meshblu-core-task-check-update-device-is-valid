@@ -4,7 +4,7 @@
   "description": "Verify a meshblu update request is valid",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- -R spec"
+    "test": "istanbul cover _mocha -- -R spec --require coffee-coverage/register-istanbul"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/octoblu/meshblu-core-task-check-update-device-is-valid#readme",
   "devDependencies": {
     "chai": "^3.4.1",
+    "chai-subset": "^1.1.0",
     "coffee-coverage": "^0.7.0",
     "coffee-script": "^1.10.0",
     "istanbul": "^0.4.0",
@@ -26,5 +27,8 @@
     "mocha-istanbul": "^0.2.0",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1"
   }
 }

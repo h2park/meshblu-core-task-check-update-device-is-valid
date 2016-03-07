@@ -1,14 +1,12 @@
 _ = require 'lodash'
 
 ERROR_NON_DOLLARED_KEYS = "Update query may not contain keys that do not start with '$'."
-ERROR_NO_MODIFY_MESHBLU = "Update query may not modify the meshblu key."
 ERROR_NO_MODIFY_TOKEN   = "Update query may not modify the token key."
 ERROR_NO_MODIFY_UUID    = "Update query may not modify the uuid key."
 
 class UpdateDeviceIsValid
   do: (request, callback) =>
     data = JSON.parse(request.rawData)
-    return @respondWithError ERROR_NO_MODIFY_MESHBLU, callback if @containsKey data, 'meshblu'
     return @respondWithError ERROR_NO_MODIFY_TOKEN, callback if @containsKey data, 'token'
     return @respondWithError ERROR_NO_MODIFY_UUID, callback if @containsKey data, 'uuid'
     return @respondWithError ERROR_NON_DOLLARED_KEYS, callback unless @allKeysStartWithADollarSign data
@@ -27,7 +25,6 @@ class UpdateDeviceIsValid
         code: 422
       data:
         error: message
-
 
   startsWithDollarSign: (key) =>
     _.startsWith key, '$'

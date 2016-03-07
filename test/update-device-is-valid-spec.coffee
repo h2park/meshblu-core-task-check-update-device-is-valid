@@ -107,17 +107,3 @@ describe 'UpdateDeviceIsValid', ->
         expect(@response).to.containSubset
           metadata:
             code: 422
-
-    describe 'when called with an invalid request that tries to $set meshblu data', ->
-      beforeEach (done) ->
-
-        request =
-          rawData: '{"$set": {"meshblu":"stole all my sockets.io"}}'
-
-        @sut = new UpdateDeviceIsValid
-        @sut.do request, (error, @response) => done error
-
-      it 'should respond with a 422', ->
-        expect(@response).to.containSubset
-          metadata:
-            code: 422

@@ -107,3 +107,17 @@ describe 'UpdateDeviceIsValid', ->
         expect(@response).to.containSubset
           metadata:
             code: 422
+
+    describe 'when called with request containing null', ->
+      beforeEach (done) ->
+
+        request =
+          rawData: '{"$set": null}'
+
+        @sut = new UpdateDeviceIsValid
+        @sut.do request, (error, @response) => done error
+
+      it 'should respond with a 422', ->
+        expect(@response).to.containSubset
+          metadata:
+            code: 422

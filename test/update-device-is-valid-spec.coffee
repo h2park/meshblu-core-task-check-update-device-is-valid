@@ -44,7 +44,7 @@ describe 'UpdateDeviceIsValid', ->
           metadata:
             code: 422
           data:
-            error: "Update query may not contain keys that do not start with '$'."
+            error: "Update query may only contain key authorized keys."
 
     describe 'when called with an invalid request with some non dollared keys', ->
       beforeEach (done) ->
@@ -60,7 +60,7 @@ describe 'UpdateDeviceIsValid', ->
           metadata:
             code: 422
           data:
-            error: "Update query may not contain keys that do not start with '$'."
+            error: "Update query may only contain key authorized keys."
 
     describe 'when called with an invalid request that tries to $set uuid', ->
       beforeEach (done) ->
@@ -99,6 +99,20 @@ describe 'UpdateDeviceIsValid', ->
 
         request =
           rawData: '{"$set": {"token":"angry"}}'
+
+        @sut = new UpdateDeviceIsValid
+        @sut.do request, (error, @response) => done error
+
+      it 'should respond with a 422', ->
+        expect(@response).to.containSubset
+          metadata:
+            code: 422
+
+    describe 'when called with an invalid request that tries to $rename something to uuid', ->
+      beforeEach (done) ->
+
+        request =
+          rawData: '{"$rename": {"master-of-the-universe":"uuid"}}'
 
         @sut = new UpdateDeviceIsValid
         @sut.do request, (error, @response) => done error

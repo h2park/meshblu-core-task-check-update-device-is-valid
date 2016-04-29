@@ -44,7 +44,7 @@ describe 'UpdateDeviceIsValid', ->
           metadata:
             code: 422
           data:
-            error: "Update query may only contain key authorized keys."
+            error: "Update query may only contain authorized keys."
 
     describe 'when called with an invalid request with some non dollared keys', ->
       beforeEach (done) ->
@@ -60,7 +60,7 @@ describe 'UpdateDeviceIsValid', ->
           metadata:
             code: 422
           data:
-            error: "Update query may only contain key authorized keys."
+            error: "Update query may only contain authorized keys."
 
     describe 'when called with an invalid request that tries to $set uuid', ->
       beforeEach (done) ->

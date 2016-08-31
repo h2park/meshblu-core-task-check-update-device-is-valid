@@ -1,10 +1,10 @@
 _ = require 'lodash'
 
-ERROR_AT_LEAST_ONE_KEY = "Update query must contain at least one key."
-ERROR_NON_AUTHORIZED_KEYS    = "Update query may only contain authorized keys."
-ERROR_NO_MODIFY_TOKEN        = "Update query may not modify the token key."
-ERROR_NO_MODIFY_UUID         = "Update query may not modify the uuid key."
-ERROR_NO_NULL_VALUES         = "Update query may contain null value for a key that starts with '$'."
+ERROR_AT_LEAST_ONE_KEY    = "Update query must contain at least one key."
+ERROR_NON_AUTHORIZED_KEYS = "Update query may only contain authorized keys."
+ERROR_NO_MODIFY_TOKEN     = "Update query may not modify the token key."
+ERROR_NO_MODIFY_UUID      = "Update query may not modify the uuid key."
+ERROR_NO_NULL_VALUES      = "Update query may contain null value for a key that starts with '$'."
 AUTHORIZED_KEYS           = [
   '$inc'
   '$mult'

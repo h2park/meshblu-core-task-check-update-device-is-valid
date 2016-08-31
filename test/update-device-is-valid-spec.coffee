@@ -1,3 +1,5 @@
+{beforeEach, describe, it} = global
+{expect} = require 'chai'
 UpdateDeviceIsValid = require '../'
 
 describe 'UpdateDeviceIsValid', ->
@@ -29,6 +31,22 @@ describe 'UpdateDeviceIsValid', ->
         expect(@response).to.containSubset
           metadata:
             code: 204
+
+    describe 'when called with an invalid request with no keys', ->
+      beforeEach (done) ->
+
+        request =
+          rawData: '{}'
+
+        @sut = new UpdateDeviceIsValid
+        @sut.do request, (error, @response) => done error
+
+      it 'should respond with a 422', ->
+        expect(@response).to.containSubset
+          metadata:
+            code: 422
+          data:
+            error: "Update query must contain at least one key."
 
     describe 'when called with an invalid request with non dollared keys', ->
       beforeEach (done) ->
